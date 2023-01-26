@@ -1,4 +1,4 @@
-package com.example.experiment.framework.adapters.flight.psql;
+package com.example.experiment.framework.adapters.flight.output.psql;
 
 import com.example.experiment.application.ports.output.PaymentOutputPort;
 import com.example.experiment.domain.entity.PaymentDetail;
@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Service("helo")
-public class PaymentPsqlAdapter implements PaymentOutputPort {
+@Service("flightPaymentAdapter")
+public class FlightPaymentPsqlAdapter implements PaymentOutputPort {
 
     @Override
     public PaymentDetail retrievePaymentDetail(PaymentInquiryRequest paymentInquiryRequest) {
@@ -30,19 +30,17 @@ public class PaymentPsqlAdapter implements PaymentOutputPort {
     @Override
     public List<PaymentMethod> retrieveAvailablePaymentMethod(ProductCode productCode) {
         /// Query Data from DB
-        List<PaymentMethod> paymentMethods = List.of(
-                new PaymentMethod(new Id(1L), "Mastercard", "CARD"),
-                new PaymentMethod(new Id(2L), "VISA Card", "CARD"),
-                new PaymentMethod(new Id(3L), "Pi Pay", "CARD"),
-                new PaymentMethod(new Id(4L), "ABA", "BANK"),
-                new PaymentMethod(new Id(4L), "Phillip Bank", "BANK")
+        return List.of(
+                new PaymentMethod(new Id(1L), "Mastercard", "CARD", BigDecimal.ZERO, new BigDecimal(2)),
+                new PaymentMethod(new Id(2L), "VISA Card", "CARD", BigDecimal.ZERO, new BigDecimal(2)),
+                new PaymentMethod(new Id(3L), "Pi Pay", "CARD", BigDecimal.ZERO, new BigDecimal(2)),
+                new PaymentMethod(new Id(4L), "ABA", "BANK", BigDecimal.ZERO, BigDecimal.ZERO),
+                new PaymentMethod(new Id(4L), "Phillip Bank", "BANK", BigDecimal.ZERO, BigDecimal.ZERO)
         );
-
-        return paymentMethods;
     }
 
-//    @Override
-//    public String getType() {
-//        return "HOTEL";
-//    }
+    @Override
+    public String getType() {
+        return "FLIGHT";
+    }
 }

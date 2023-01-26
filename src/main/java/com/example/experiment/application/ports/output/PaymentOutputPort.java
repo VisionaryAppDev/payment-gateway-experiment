@@ -10,5 +10,5 @@ import java.util.List;
 public interface PaymentOutputPort {
     PaymentDetail retrievePaymentDetail(PaymentInquiryRequest paymentInquiryRequest);
     List<PaymentMethod> retrieveAvailablePaymentMethod(ProductCode productCode);
-//    String getType();
+    String getType();
 }

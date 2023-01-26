@@ -6,6 +6,7 @@ import com.example.experiment.domain.vo.PaymentInquiryResponse;
 import com.example.experiment.domain.vo.ProductCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -13,11 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PaymentAdapter {
 
-    @GetMapping("/test")
-    public PaymentInquiryResponse getPaymentUseCase() {
+    @GetMapping("/inquiry")
+    public PaymentInquiryResponse getPaymentUseCase(@RequestParam String type) {
         ProductCode productCode = new ProductCode("CODE-001");
-        String type = "FLIGHT";
-
         return PaymentUseCaseBean.paymentUseCases.get(type).inquiry(new PaymentInquiryRequest(productCode, type));
     }
 }

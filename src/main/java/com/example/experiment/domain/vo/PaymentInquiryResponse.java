@@ -12,4 +12,5 @@ import java.util.List;
 public class PaymentInquiryResponse {
     private PaymentDetail paymentDetail;
     private List<PaymentMethod> paymentMethod;
+    private List<PaymentPriceSummary> priceSummaries;
 }
