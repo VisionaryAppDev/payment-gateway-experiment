@@ -7,6 +7,7 @@ import com.example.experiment.domain.entity.Product;
 import com.example.experiment.domain.vo.Id;
 import com.example.experiment.domain.vo.PaymentInquiryRequest;
 import com.example.experiment.domain.vo.ProductCode;
+import com.example.experiment.domain.vo.ProductType;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -19,9 +20,9 @@ public class FlightPaymentPsqlAdapter implements PaymentOutputPort {
     public PaymentDetail retrievePaymentDetail(PaymentInquiryRequest paymentInquiryRequest) {
         /// Retrieve data from "Product Service"
         List<Product> products = List.of(
-                new Product(new Id(1L), "Flight 001", "FLIGHT", new BigDecimal(50)),
-                new Product(new Id(2L), "Flight 002", "FLIGHT", new BigDecimal(70)),
-                new Product(new Id(3L), "Flight 003", "FLIGHT", new BigDecimal(80))
+                new Product(new Id(1L), "Flight 001", ProductType.FLIGHT, new BigDecimal(50)),
+                new Product(new Id(2L), "Flight 002", ProductType.FLIGHT, new BigDecimal(70)),
+                new Product(new Id(3L), "Flight 003", ProductType.FLIGHT, new BigDecimal(80))
         );
 
         return new PaymentDetail(new Id(1L), products);
@@ -40,7 +41,7 @@ public class FlightPaymentPsqlAdapter implements PaymentOutputPort {
     }
 
     @Override
-    public String getType() {
-        return "FLIGHT";
+    public ProductType getType() {
+        return ProductType.FLIGHT;
     }
 }

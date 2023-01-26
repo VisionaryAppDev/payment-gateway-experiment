@@ -1,15 +1,6 @@
 package com.example.experiment.domain.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 import java.math.BigDecimal;
 
-@AllArgsConstructor
-@Data
-public class PaymentPriceSummary {
-    private Id paymentMethodId;
-    private BigDecimal totalDiscount;
-    private BigDecimal additionalFee;
-    private BigDecimal total;
+public record PaymentPriceSummary(Id paymentMethodId, BigDecimal totalDiscount, BigDecimal additionalFee, BigDecimal total) {
 }

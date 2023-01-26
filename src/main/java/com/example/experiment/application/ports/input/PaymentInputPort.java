@@ -8,6 +8,7 @@ import com.example.experiment.domain.entity.Product;
 import com.example.experiment.domain.vo.PaymentInquiryRequest;
 import com.example.experiment.domain.vo.PaymentInquiryResponse;
 import com.example.experiment.domain.vo.PaymentPriceSummary;
+import com.example.experiment.domain.vo.PaymentRequest;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
@@ -35,5 +36,10 @@ public class PaymentInputPort implements PaymentUseCase {
         }).toList();
 
         return new PaymentInquiryResponse(paymentDetail, paymentMethods, paymentPriceSummaries);
+    }
+
+    @Override
+    public void pay(PaymentRequest paymentRequest) {
+        /// inquiry(...)
     }
 }

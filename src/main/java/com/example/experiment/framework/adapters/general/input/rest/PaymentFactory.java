@@ -20,7 +20,7 @@ public class PaymentFactory {
     @PostConstruct
     public void initMyServiceCache() {
         for (PaymentOutputPort useCase : paymentUseCases) {
-            paymentOutputPorts.put(useCase.getType(), useCase);
+            paymentOutputPorts.put(useCase.getType().name(), useCase);
         }
     }
 
