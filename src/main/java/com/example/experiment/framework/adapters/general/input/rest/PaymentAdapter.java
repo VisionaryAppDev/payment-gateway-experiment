@@ -24,7 +24,6 @@ public class PaymentAdapter {
     private final InquiryPaymentMethodUseCase inquiryPaymentMethodUseCase;
     private final InquiryProductDetailFactory inquiryProductDetailFactory;
     private final PaymentSettlementFactory paymentSettlementFactory;
-    private PaymentSettlementUseCase paymentSettlementUseCase;
 
     @GetMapping("/inquiry")
     public PaymentInquiryResponse getPaymentUseCase(@RequestParam ProductType type) {
