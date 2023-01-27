@@ -5,6 +5,7 @@ import com.example.experiment.application.ports.output.InquiryPaymentMethodOutpu
 import com.example.experiment.domain.entity.PaymentMethod;
 import com.example.experiment.domain.entity.PaymentProvider;
 import com.example.experiment.domain.vo.Id;
+import com.example.experiment.domain.vo.PaymentMethodType;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -26,11 +27,11 @@ public class InquiryPaymentMethodPgsqlAdapter implements InquiryPaymentMethodOut
         PaymentProvider stripe = new PaymentProvider(new Id(1L), "STRIPE", null);
 
         return List.of(
-            new PaymentMethod(new Id(1L), "Mastercard", "CARD", BigDecimal.ZERO, new BigDecimal(2), stripe),
-            new PaymentMethod(new Id(2L), "VISA Card", "CARD", BigDecimal.ZERO, new BigDecimal(2), stripe),
-            new PaymentMethod(new Id(3L), "Pi Pay", "CARD", BigDecimal.ZERO, new BigDecimal(2), stripe),
-            new PaymentMethod(new Id(4L), "Phillip Scan QR", "KHQR", BigDecimal.ZERO, BigDecimal.ZERO, phillipBank),
-            new PaymentMethod(new Id(5L), "ABA Pay", "KHQR", BigDecimal.ZERO, BigDecimal.ZERO, aba)
+            new PaymentMethod(new Id(1L), "Mastercard", PaymentMethodType.CARD, BigDecimal.ZERO, new BigDecimal(2), stripe),
+            new PaymentMethod(new Id(2L), "VISA Card", PaymentMethodType.CARD, BigDecimal.ZERO, new BigDecimal(2), stripe),
+            new PaymentMethod(new Id(3L), "Pi Pay", PaymentMethodType.E_WALLET, BigDecimal.ZERO, new BigDecimal(25), stripe),
+            new PaymentMethod(new Id(4L), "Phillip Scan QR", PaymentMethodType.MOBILE_APP, BigDecimal.ZERO, BigDecimal.ZERO, phillipBank),
+            new PaymentMethod(new Id(5L), "ABA Pay", PaymentMethodType.MOBILE_APP, BigDecimal.ZERO, BigDecimal.ZERO, aba)
         );
     }
 }

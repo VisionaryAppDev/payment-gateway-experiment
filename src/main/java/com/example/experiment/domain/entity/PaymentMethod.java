@@ -3,6 +3,7 @@ package com.example.experiment.domain.entity;
 import com.example.experiment.domain.specification.DiscountSpec;
 import com.example.experiment.domain.specification.FeeSpec;
 import com.example.experiment.domain.vo.Id;
+import com.example.experiment.domain.vo.PaymentMethodType;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -13,12 +14,12 @@ import java.math.BigDecimal;
 public class PaymentMethod {
     private Id id;
     private String name;
-    private String type;
+    private PaymentMethodType type;
     private BigDecimal fee;
     private BigDecimal discount;
     private PaymentProvider paymentProvider;
 
-    public PaymentMethod(Id id, String name, String type, BigDecimal fee, BigDecimal discount, PaymentProvider paymentProvider) {
+    public PaymentMethod(Id id, String name, PaymentMethodType type, BigDecimal fee, BigDecimal discount, PaymentProvider paymentProvider) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -33,7 +34,7 @@ public class PaymentMethod {
         feeSpec.check(this);
     }
 
-    public PaymentMethod(Id id, String name, String type, BigDecimal fee, BigDecimal discount) {
+    public PaymentMethod(Id id, String name, PaymentMethodType type, BigDecimal fee, BigDecimal discount) {
         this(id, name, type, fee, discount, null);
     }
 }

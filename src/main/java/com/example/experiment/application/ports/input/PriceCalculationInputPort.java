@@ -18,8 +18,8 @@ public class PriceCalculationInputPort implements PriceCalculationUseCase {
     @Override
     public PaymentPriceSummary calculate(PaymentDetail paymentDetail, PaymentMethod paymentMethod) {
         BigDecimal subtotal = paymentDetail.getProduct().stream().map(Product::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
-        var discount = subtotal.subtract(subtotal.multiply(paymentMethod.getDiscount()).divide(new BigDecimal(100)));
-        var fee = subtotal.add(subtotal.multiply(paymentMethod.getFee()).divide(new BigDecimal(100)));
+        var discount = subtotal.multiply(paymentMethod.getDiscount()).divide(new BigDecimal(100));
+        var fee = subtotal.subtract(discount).multiply(paymentMethod.getFee()).divide(new BigDecimal(100));
         var total = subtotal.subtract(discount).add(fee);
 
         return new PaymentPriceSummary(paymentMethod.getId(), discount, fee, total);

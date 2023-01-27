@@ -10,11 +10,16 @@ Inquiry operation start when the actor is calling to Payment Gateway Service to 
 ### Settlement
 Similar to the Inquiry process, Payment Gateway Service will start from product detail inquiry, query for specific Payment Provider, Calculate total cost and make a request call to the Payment Provider. 
 
-
-# Setter for entity?
+# FAQ
+## Setter for entity?
 In Hexagonal Architecture, the primary focus is on keeping the domain entities and business logic separate from the infrastructure and presentation layers. The entities in the domain should be treated as immutable objects, meaning they should not be modified after they are created.
 
 Therefore, it is generally not recommended to allow changing the ID of an entity by generating a setter in Java. Instead, you should create a new entity with the updated ID if needed. This helps to ensure that the domain entities remain in a consistent state and that any changes to the entities are tracked and auditable.
+
+## Why Manually Generate Constructor
+Because it's much easier to add business logic and validation there.
+
+# Diagram 
 
 ![diagram](diagram.jpg)
 
