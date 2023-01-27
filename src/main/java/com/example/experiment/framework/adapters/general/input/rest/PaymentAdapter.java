@@ -7,7 +7,7 @@ import com.example.experiment.application.usecases.PriceCalculationUseCase;
 import com.example.experiment.domain.entity.PaymentDetail;
 import com.example.experiment.domain.entity.PaymentMethod;
 import com.example.experiment.domain.vo.*;
-import com.example.experiment.framework.adapters.general.factory.InquiryPaymentInfoFactory;
+import com.example.experiment.framework.adapters.general.factory.InquiryProductDetailFactory;
 import com.example.experiment.framework.adapters.general.factory.PaymentSettlementFactory;
 import com.example.experiment.framework.adapters.general.output.dto.response.PaymentInquiryResponse;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ public class PaymentAdapter {
 
     private final PriceCalculationUseCase priceCalculationUseCase;
     private final InquiryPaymentMethodUseCase inquiryPaymentMethodUseCase;
-    private final InquiryPaymentInfoFactory inquiryPaymentInfoFactory;
+    private final InquiryProductDetailFactory inquiryProductDetailFactory;
     private final PaymentSettlementFactory paymentSettlementFactory;
     private PaymentSettlementUseCase paymentSettlementUseCase;
 
@@ -32,7 +32,7 @@ public class PaymentAdapter {
         ProductCode productCode = new ProductCode("CODE-001");
 
         ///
-        PaymentDetail paymentDetail = inquiryPaymentInfoFactory.getPayment(type).inquiry(new ProductDetailInquiryRequest(productCode, type));
+        PaymentDetail paymentDetail = inquiryProductDetailFactory.getPayment(type).inquiry(new ProductDetailInquiryRequest(productCode, type));
         List<PaymentMethod> paymentMethods = inquiryPaymentMethodUseCase.findAll();
         List<PaymentPriceSummary> priceSummary = priceCalculationUseCase.calculate(paymentDetail, paymentMethods);
 
@@ -41,6 +41,6 @@ public class PaymentAdapter {
 
     @PostMapping("/settle")
     public SettlementResponse settle(@RequestBody PaymentSettlementRequest paymentSettlementRequest) {
-        return paymentSettlementFactory.getPaymentProviderByPaymentMethodId(paymentSettlementRequest.paymentMethodId()).settle(paymentSettlementRequest);
+        return paymentSettlementFactory.getPaymentProviderByPaymentMethodId(paymentSettlementRequest.paymentMethodId(), paymentSettlementRequest.productType()).settle(paymentSettlementRequest);
     }
 }
