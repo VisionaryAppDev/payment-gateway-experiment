@@ -25,12 +25,12 @@ public class PaymentAdapter {
     private final PaymentSettlementFactory paymentSettlementFactory;
 
     @GetMapping("/inquiry")
-    public PaymentInquiryResponse getPaymentUseCase(@RequestParam String type) {
+    public PaymentInquiryResponse getPaymentUseCase(@RequestParam ProductType type) {
         /// Test Data
         ProductCode productCode = new ProductCode("CODE-001");
 
         ///
-        PaymentDetail paymentDetail = inquiryPaymentInfoFactory.getPayment(type).inquiry(new PaymentInquiryRequest(productCode, type));
+        PaymentDetail paymentDetail = inquiryPaymentInfoFactory.getPayment(type).inquiry(new ProductDetailInquiryRequest(productCode, type));
         List<PaymentMethod> paymentMethods = inquiryPaymentMethodUseCase.findAll();
         List<PaymentPriceSummary> priceSummary = priceCalculationUseCase.calculate(paymentDetail, paymentMethods);
 
@@ -40,7 +40,7 @@ public class PaymentAdapter {
     @PostMapping("/settle")
     public SettlementResponse settle(@RequestBody PaymentSettlementRequest paymentSettlementRequest) {
         ///
-        PaymentDetail paymentDetail = inquiryPaymentInfoFactory.getPayment(paymentSettlementRequest.type()).inquiry(new PaymentInquiryRequest(paymentSettlementRequest.productCode(), paymentSettlementRequest.type()));
+        PaymentDetail paymentDetail = inquiryPaymentInfoFactory.getPayment(paymentSettlementRequest.productType()).inquiry(new ProductDetailInquiryRequest(paymentSettlementRequest.productCode(), paymentSettlementRequest.productType()));
         PaymentMethod paymentMethods = inquiryPaymentMethodUseCase.findById(paymentSettlementRequest.paymentMethodId());
         PaymentPriceSummary priceSummary = priceCalculationUseCase.calculate(paymentDetail, paymentMethods);
 

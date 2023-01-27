@@ -1,10 +1,10 @@
 package com.example.experiment.framework.adapters.flight.output.psql;
 
-import com.example.experiment.application.ports.output.InquiryPaymentInfoOutputPort;
+import com.example.experiment.application.ports.output.InquiryProductDetailOutputPort;
 import com.example.experiment.domain.entity.PaymentDetail;
 import com.example.experiment.domain.entity.Product;
 import com.example.experiment.domain.vo.Id;
-import com.example.experiment.domain.vo.PaymentInquiryRequest;
+import com.example.experiment.domain.vo.ProductDetailInquiryRequest;
 import com.example.experiment.domain.vo.ProductType;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +12,10 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Service("flightPaymentAdapter")
-public class FlightInquiryPaymentPsqlAdapterInfo implements InquiryPaymentInfoOutputPort {
+public class FlightInquiryProductDetail implements InquiryProductDetailOutputPort {
 
     @Override
-    public PaymentDetail inquiry(PaymentInquiryRequest paymentInquiryRequest) {
+    public PaymentDetail inquiry(ProductDetailInquiryRequest productDetailInquiryRequest) {
         /// Retrieve data from "Product Service"
         List<Product> products = List.of(
                 new Product(new Id(1L), "Flight 001", ProductType.FLIGHT, new BigDecimal(50)),
