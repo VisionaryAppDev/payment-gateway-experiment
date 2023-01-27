@@ -2,6 +2,7 @@ package com.example.experiment.framework.adapters.general.input.rest;
 
 
 import com.example.experiment.application.usecases.InquiryPaymentMethodUseCase;
+import com.example.experiment.application.usecases.PaymentSettlementUseCase;
 import com.example.experiment.application.usecases.PriceCalculationUseCase;
 import com.example.experiment.domain.entity.PaymentDetail;
 import com.example.experiment.domain.entity.PaymentMethod;
@@ -23,6 +24,7 @@ public class PaymentAdapter {
     private final InquiryPaymentMethodUseCase inquiryPaymentMethodUseCase;
     private final InquiryPaymentInfoFactory inquiryPaymentInfoFactory;
     private final PaymentSettlementFactory paymentSettlementFactory;
+    private PaymentSettlementUseCase paymentSettlementUseCase;
 
     @GetMapping("/inquiry")
     public PaymentInquiryResponse getPaymentUseCase(@RequestParam ProductType type) {
@@ -39,11 +41,6 @@ public class PaymentAdapter {
 
     @PostMapping("/settle")
     public SettlementResponse settle(@RequestBody PaymentSettlementRequest paymentSettlementRequest) {
-        ///
-        PaymentDetail paymentDetail = inquiryPaymentInfoFactory.getPayment(paymentSettlementRequest.productType()).inquiry(new ProductDetailInquiryRequest(paymentSettlementRequest.productCode(), paymentSettlementRequest.productType()));
-        PaymentMethod paymentMethods = inquiryPaymentMethodUseCase.findById(paymentSettlementRequest.paymentMethodId());
-        PaymentPriceSummary priceSummary = priceCalculationUseCase.calculate(paymentDetail, paymentMethods);
-
-        return paymentSettlementFactory.getPaymentProviderByPaymentMethodId(paymentSettlementRequest.paymentMethodId()).settle(paymentDetail, paymentMethods, priceSummary);
+        return paymentSettlementFactory.getPaymentProviderByPaymentMethodId(paymentSettlementRequest.paymentMethodId()).settle(paymentSettlementRequest);
     }
 }
