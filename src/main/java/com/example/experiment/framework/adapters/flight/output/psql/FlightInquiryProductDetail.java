@@ -11,16 +11,16 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Service("flightPaymentAdapter")
+@Service
 public class FlightInquiryProductDetail implements InquiryProductDetailOutputPort {
 
     @Override
     public PaymentDetail inquiry(ProductDetailInquiryRequest productDetailInquiryRequest) {
-        /// Retrieve data from "Product Service"
+        /// HTTP Request: retrieve data from "Product Service"
         List<Product> products = List.of(
-                new Product(new Id(1L), "Flight 001", ProductType.FLIGHT, new BigDecimal(50)),
-                new Product(new Id(2L), "Flight 002", ProductType.FLIGHT, new BigDecimal(70)),
-                new Product(new Id(3L), "Flight 003", ProductType.FLIGHT, new BigDecimal(80))
+                new Product(new Id(1L), "Flight 001", ProductType.FLIGHT, new BigDecimal(399)),
+                new Product(new Id(2L), "Flight 002", ProductType.FLIGHT, new BigDecimal(450)),
+                new Product(new Id(3L), "Flight 003", ProductType.FLIGHT, new BigDecimal(740))
         );
 
         return new PaymentDetail(new Id(1L), products);

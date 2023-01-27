@@ -20,7 +20,7 @@ public class StripePaymentSettlementAdapter implements PaymentSettlementOutputPo
         /// HTTP request to ABA ...
 
         /// return ABA Response
-        return new StripeSettlementResponseDto("Stripe" + UUID.randomUUID(), LocalDateTime.now(), "Additional field" + Math.random());
+        return new StripeSettlementResponseDto("STRIPE: " + UUID.randomUUID(), LocalDateTime.now(), "Additional field" + Math.random());
     }
 
     @Override

@@ -13,18 +13,18 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
-@Service("hotelPaymentAdapter")
+@Service
 public class HotelInquiryProductDetail implements InquiryProductDetailOutputPort {
 
     @Override
     public PaymentDetail inquiry(ProductDetailInquiryRequest productDetailInquiryRequest) {
-        /// Retrieve data from "Product Service"
+        /// HTTP Request: retrieve data from "Product Service"
         List<Product> products = List.of(
                 new Product(new Id(1L), "Hotel 001", ProductType.HOTEL, new BigDecimal(50)),
                 new Product(new Id(2L), "Hotel 002", ProductType.HOTEL, new BigDecimal(70)),
                 new Product(new Id(3L), "Hotel 003", ProductType.HOTEL, new BigDecimal(80)));
 
-        return new HotelPaymentDetailResponseDto(new Id(1L), products, "Additional: " +UUID.randomUUID());
+        return new HotelPaymentDetailResponseDto(new Id(1L), products, "Additional: " + UUID.randomUUID());
     }
 
     @Override
