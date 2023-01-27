@@ -36,34 +36,4 @@ public class PaymentMethod {
     public PaymentMethod(Id id, String name, String type, BigDecimal fee, BigDecimal discount) {
         this(id, name, type, fee, discount, null);
     }
-
-    public void setId(Id id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setFee(BigDecimal fee) {
-        this.fee = fee;
-
-        FeeSpec feeSpec = new FeeSpec();
-        feeSpec.check(this);
-    }
-
-    public void setDiscount(BigDecimal discount) {
-        this.discount = discount;
-
-        DiscountSpec discountSpec = new DiscountSpec();
-        discountSpec.check(this);
-    }
-
-    public void setPaymentProvider(PaymentProvider paymentProvider) {
-        this.paymentProvider = paymentProvider;
-    }
 }

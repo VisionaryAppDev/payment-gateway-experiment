@@ -25,23 +25,4 @@ public class Product {
         PriceSpec priceSpec = new PriceSpec();
         priceSpec.check(this);
     }
-
-    public void setId(Id id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setType(ProductType type) {
-        this.type = type;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-
-        PriceSpec priceSpec = new PriceSpec();
-        priceSpec.check(this);
-    }
 }

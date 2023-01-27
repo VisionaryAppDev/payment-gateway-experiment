@@ -19,15 +19,4 @@ public class PaymentProvider {
         this.paymentMethods = paymentMethods;
     }
 
-    public void setId(Id id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPaymentMethods(List<PaymentMethod> paymentMethods) {
-        this.paymentMethods = paymentMethods;
-    }
 }
