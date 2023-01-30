@@ -18,7 +18,7 @@ public class AbaPaymentSettlementAdapter implements PaymentSettlementOutputPort 
     public SettlementResponse settle(PaymentDetail paymentDetail, PaymentMethod paymentMethod, PaymentPriceSummary priceSummary) {
         /// HTTP request to ABA ...
 
-        /// return ABA Response
+        /// return response
         return new SettlementResponse("ABA: " + UUID.randomUUID(), LocalDateTime.now());
     }
 

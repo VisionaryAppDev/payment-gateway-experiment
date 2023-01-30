@@ -19,7 +19,7 @@ public class StripePaymentSettlementAdapter implements PaymentSettlementOutputPo
     public SettlementResponse settle(PaymentDetail paymentDetail, PaymentMethod paymentMethod, PaymentPriceSummary priceSummary) {
         /// HTTP request to ABA ...
 
-        /// return ABA Response
+        /// return response
         return new StripeSettlementResponseDto("STRIPE: " + UUID.randomUUID(), LocalDateTime.now(), "Additional field" + Math.random());
     }
 

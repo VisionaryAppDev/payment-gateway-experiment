@@ -18,7 +18,7 @@ public class PhillipBankPaymentSettlementAdapter implements PaymentSettlementOut
     public SettlementResponse settle(PaymentDetail paymentDetail, PaymentMethod paymentMethod, PaymentPriceSummary priceSummary) {
         /// HTTP request to ABA ...
 
-        /// return ABA Response
+        /// return response
         return new SettlementResponse("PLB: " + UUID.randomUUID(), LocalDateTime.now());
     }
 
