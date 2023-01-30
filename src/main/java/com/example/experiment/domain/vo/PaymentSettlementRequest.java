@@ -1,5 +1,5 @@
 package com.example.experiment.domain.vo;
 
-public record PaymentSettlementRequest(ProductCode productCode, ProductType productType, Id paymentMethodId) {
+public record PaymentSettlementRequest(String productCode, ProductType productType, Id paymentMethodId) {
 }
 

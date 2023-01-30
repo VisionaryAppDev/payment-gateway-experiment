@@ -26,11 +26,7 @@ public class PaymentAdapter {
     private final PaymentSettlementFactory paymentSettlementFactory;
 
     @GetMapping("/inquiry")
-    public PaymentInquiryResponse getPaymentUseCase(@RequestParam ProductType type) {
-        /// Test Data
-        ProductCode productCode = new ProductCode("CODE-001");
-
-        ///
+    public PaymentInquiryResponse getPaymentUseCase(@RequestParam String productCode, @RequestParam ProductType type) {
         PaymentDetail paymentDetail = inquiryProductDetailFactory.getPayment(type).inquiry(new ProductDetailInquiryRequest(productCode, type));
         List<PaymentMethod> paymentMethods = inquiryPaymentMethodUseCase.findAll();
         List<PaymentPriceSummary> priceSummary = priceCalculationUseCase.calculate(paymentDetail, paymentMethods);
